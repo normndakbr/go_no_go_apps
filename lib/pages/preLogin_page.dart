@@ -11,17 +11,18 @@ class PreLoginPage extends StatelessWidget {
         title: Text('Pre Login Page'),
       ),
       body: Center(
-        child: Text(
-          'Pre Login page',
-          style: TextStyle(fontSize: 50),
+        child: Column(
+          children: [
+            Text(
+              'Halo, selamat datang di aplikasi ini',
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Image.asset('assets/images/btnLoginMasinis.png'),
+          ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return LoginPage();
-          }));
-        },
       ),
     );
   }
