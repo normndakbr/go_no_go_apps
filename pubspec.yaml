@@ -64,6 +64,20 @@ flutter:
     - assets/images/btnLoginDipo.png
     - assets/images/btnLogin.png
     - assets/images/btnNext.png
+    - assets/images/btnBerfungsi.png
+    - assets/images/btnTidakBerfungsi.png
+    - assets/images/imgWiper.png
+    - assets/images/imgLokotrack.png
+    - assets/images/imgApar.png
+    - assets/images/imgLampuKabinMasinis.png
+    - assets/images/imgSulingLokomotif.png
+    - assets/images/imgDeadmanDevice.png
+    - assets/images/imgRadioMasinis.png
+    - assets/images/imgPengukurKecepatan.png
+    - assets/images/imgLampuSorot.png
+    - assets/images/imgStopblok.png
+
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

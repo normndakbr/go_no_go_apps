@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import '../services/sharedPreferences.dart';
 import 'preLogin_page.dart';
 
-class LaporanMasinis extends StatefulWidget {
-  const LaporanMasinis({Key? key}) : super(key: key);
+class LaporanMasinisPage extends StatefulWidget {
+  const LaporanMasinisPage({Key? key}) : super(key: key);
 
   @override
-  State<LaporanMasinis> createState() => _LaporanMasinisState();
+  State<LaporanMasinisPage> createState() => _LaporanMasinisPageState();
 }
 
-class _LaporanMasinisState extends State<LaporanMasinis> {
+class _LaporanMasinisPageState extends State<LaporanMasinisPage> {
   bool hidePassword = true;
   TextEditingController masinisCtl = TextEditingController();
   TextEditingController astMasinisCtl = TextEditingController();
@@ -135,6 +135,8 @@ class _LaporanMasinisState extends State<LaporanMasinis> {
                     print("No. Lokomotif : " + noLokomotifCtl.text);
                     print("Jumlah Rangkaian : " + jmlRangkaianCtl.text);
                     print("Jumlah ASD : " + jmlAsdCtl.text);
+
+                    Navigator.pushNamed(context, '/item-wiper');
                   },
                 ),
               ),
