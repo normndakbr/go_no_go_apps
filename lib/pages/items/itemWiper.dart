@@ -121,13 +121,16 @@ class _ItemWiperState extends State<ItemWiper> {
                         if (statusWiper == true) {
                           print("Wiper Berfungsi");
                           print("Keterangan : " + ketWiperCtl.text);
+                          await sharedPref.writeData(
+                              'statusWiper', 'Berfungsi');
                         } else {
                           print("Wiper Tidak Berfungsi");
                           print("Keterangan : " + ketWiperCtl.text);
+                          await sharedPref.writeData(
+                              'statusWiper', 'Tidak Berfungsi');
                         }
 
-                        await sharedPref.writeData('statusWiper', 'Berfungsi');
-                        // Navigator.pushNamed(context, '/preLogin');
+                        Navigator.pushNamed(context, '/item-lokotrack');
                       },
                     )
                   : SizedBox(height: 0),

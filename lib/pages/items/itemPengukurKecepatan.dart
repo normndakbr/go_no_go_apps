@@ -121,14 +121,16 @@ class _ItemPengukurKecepatanState extends State<ItemPengukurKecepatan> {
                         if (statusPengukurKecepatan == true) {
                           print("PengukurKecepatan Berfungsi");
                           print("Keterangan : " + ketPengukurKecepatanCtl.text);
+                          await sharedPref.writeData(
+                              'statusPengukurKecepatan', 'Berfungsi');
                         } else {
                           print("PengukurKecepatan Tidak Berfungsi");
                           print("Keterangan : " + ketPengukurKecepatanCtl.text);
+                          await sharedPref.writeData(
+                              'statusPengukurKecepatan', 'Tidak Berfungsi');
                         }
 
-                        await sharedPref.writeData(
-                            'statusPengukurKecepatan', 'Berfungsi');
-                        // Navigator.pushNamed(context, '/preLogin');
+                        Navigator.pushNamed(context, '/item-lampu-sorot');
                       },
                     )
                   : SizedBox(height: 0),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:test_route/services/sharedPreferences.dart';
+import '../../widgets/buildButton.dart';
 import '../login_page.dart';
+import 'package:cool_alert/cool_alert.dart';
 
 class ItemStopblok extends StatefulWidget {
   const ItemStopblok({Key? key}) : super(key: key);
@@ -21,6 +23,21 @@ class _ItemStopblokState extends State<ItemStopblok> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+
+    final confirmAlert = BuildButton(
+      onTap: () {
+        CoolAlert.show(
+          context: context,
+          type: CoolAlertType.confirm,
+          text: 'Submit Laporan?',
+          confirmBtnText: 'Ya',
+          cancelBtnText: 'Tidak',
+          confirmBtnColor: Colors.green,
+        );
+      },
+      text: 'Submit',
+      color: Colors.lightGreen,
+    );
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -121,13 +138,29 @@ class _ItemStopblokState extends State<ItemStopblok> {
                         if (statusStopblok == true) {
                           print("Stopblok Berfungsi");
                           print("Keterangan : " + ketStopblokCtl.text);
+                          await sharedPref
+                              .writeData('statusStopblok', 'Berfungsi')
+                              .then((value) => {
+                                    CoolAlert.show(
+                                        context: context,
+                                        type: CoolAlertType.success,
+                                        text: "Laporan anda telah terkirim.",
+                                        confirmBtnText: 'Kembali',
+                                        confirmBtnColor: Color(0xFFFB8500),
+                                        onConfirmBtnTap: () {
+                                          Navigator.pop(context);
+                                          Navigator.of(context)
+                                              .pushReplacementNamed(
+                                                  '/preLogin');
+                                        })
+                                  });
                         } else {
                           print("Stopblok Tidak Berfungsi");
                           print("Keterangan : " + ketStopblokCtl.text);
+                          await sharedPref.writeData(
+                              'statusStopblok', 'Tidak Berfungsi');
                         }
 
-                        await sharedPref.writeData(
-                            'statusStopblok', 'Berfungsi');
                         // Navigator.pushNamed(context, '/preLogin');
                       },
                     )

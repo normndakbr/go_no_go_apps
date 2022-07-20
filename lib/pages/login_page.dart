@@ -119,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                     if (userType == 'Masinis') {
                       Navigator.pushNamed(context, '/laporan-masinis');
                     } else {
-                      print("Anda login sebagai DIPO");
+                      Navigator.pushNamed(context, '/item-wiper');
                     }
                   },
                 ),

@@ -121,14 +121,16 @@ class _ItemLokotrackState extends State<ItemLokotrack> {
                         if (statusLokotrack == true) {
                           print("Lokotrack Berfungsi");
                           print("Keterangan : " + ketLokotrackCtl.text);
+                          await sharedPref.writeData(
+                              'statusLokotrack', 'Berfungsi');
                         } else {
                           print("Lokotrack Tidak Berfungsi");
                           print("Keterangan : " + ketLokotrackCtl.text);
+                          await sharedPref.writeData(
+                              'statusLokotrack', 'Tidak Berfungsi');
                         }
 
-                        await sharedPref.writeData(
-                            'statusLokotrack', 'Berfungsi');
-                        // Navigator.pushNamed(context, '/preLogin');
+                        Navigator.pushNamed(context, '/item-apar');
                       },
                     )
                   : SizedBox(height: 0),

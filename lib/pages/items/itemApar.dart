@@ -121,13 +121,16 @@ class _ItemAparState extends State<ItemApar> {
                         if (statusApar == true) {
                           print("Apar Berfungsi");
                           print("Keterangan : " + ketAparCtl.text);
+                          await sharedPref.writeData('statusApar', 'Berfungsi');
                         } else {
                           print("Apar Tidak Berfungsi");
                           print("Keterangan : " + ketAparCtl.text);
+                          await sharedPref.writeData(
+                              'statusApar', 'Tidak Berfungsi');
                         }
 
-                        await sharedPref.writeData('statusApar', 'Berfungsi');
-                        // Navigator.pushNamed(context, '/preLogin');
+                        Navigator.pushNamed(
+                            context, '/item-lampu-kabin-masinis');
                       },
                     )
                   : SizedBox(height: 0),

@@ -121,14 +121,16 @@ class _ItemDeadmanDeviceState extends State<ItemDeadmanDevice> {
                         if (statusDeadmanDevice == true) {
                           print("DeadmanDevice Berfungsi");
                           print("Keterangan : " + ketDeadmanDeviceCtl.text);
+                          await sharedPref.writeData(
+                              'statusDeadmanDevice', 'Berfungsi');
                         } else {
                           print("DeadmanDevice Tidak Berfungsi");
                           print("Keterangan : " + ketDeadmanDeviceCtl.text);
+                          await sharedPref.writeData(
+                              'statusDeadmanDevice', 'Tidak Berfungsi');
                         }
 
-                        await sharedPref.writeData(
-                            'statusDeadmanDevice', 'Berfungsi');
-                        // Navigator.pushNamed(context, '/preLogin');
+                        Navigator.pushNamed(context, '/item-radio-masinis');
                       },
                     )
                   : SizedBox(height: 0),
