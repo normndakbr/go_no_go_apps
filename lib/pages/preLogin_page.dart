@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_route/services/database_helper.dart';
 import 'package:test_route/services/sharedPreferences.dart';
 import 'login_page.dart';
 
@@ -11,6 +12,23 @@ class PreLoginPage extends StatefulWidget {
 
 class _PreLoginPageState extends State<PreLoginPage> {
   SharedPreferenceService sharedPref = SharedPreferenceService();
+
+  @override
+  void initState() {
+    super.initState();
+    _registerUser();
+  }
+
+  Future<void> _registerUser() async {
+    await SQLHelper.createUser('masinis1', '12345', 'Masinis');
+    await SQLHelper.createUser('masinis2', '12345', 'Masinis');
+    await SQLHelper.createUser('masinis3', '12345', 'Masinis');
+    await SQLHelper.createUser('dipo1', '12345', 'Dipo');
+    await SQLHelper.createUser('dipo2', '12345', 'Dipo');
+    await SQLHelper.createUser('dipo3', '12345', 'Dipo');
+
+    print("Register done");
+  }
 
   @override
   Widget build(BuildContext context) {

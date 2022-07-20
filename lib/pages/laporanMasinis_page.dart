@@ -61,7 +61,21 @@ class _LaporanMasinisPageState extends State<LaporanMasinisPage> {
                   ),
                 ),
                 SizedBox(
-                  height: height * 0.06,
+                  height: height * 0.015,
+                ),
+                Container(
+                  width: width * 0.9,
+                  child: Text(
+                    'Silahkan lengkapi data berikut terlebih dahulu untuk melanjutkan',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontSize: height * 0.025,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: height * 0.04,
                 ),
                 TextFormField(
                   controller: masinisCtl,
@@ -128,49 +142,60 @@ class _LaporanMasinisPageState extends State<LaporanMasinisPage> {
                 SizedBox(
                   height: height * 0.06,
                 ),
-                Center(
-                  child: GestureDetector(
-                    child: Image.asset('assets/images/btnNext.png'),
-                    onTap: () async {
-                      print("Masinis : " + masinisCtl.text);
-                      print("Asisten Masinis : " + astMasinisCtl.text);
-                      print("No. Lokomotif : " + noLokomotifCtl.text);
-                      print("Jumlah Rangkaian : " + jmlRangkaianCtl.text);
-                      print("Jumlah ASD : " + jmlAsdCtl.text);
+                masinisCtl.text != '' &&
+                        astMasinisCtl.text != '' &&
+                        noLokomotifCtl.text != '' &&
+                        jmlRangkaianCtl.text != '' &&
+                        jmlAsdCtl.text != ''
+                    ? Center(
+                        child: GestureDetector(
+                          child: Image.asset('assets/images/btnNext.png'),
+                          onTap: () async {
+                            print("Masinis : " + masinisCtl.text);
+                            print("Asisten Masinis : " + astMasinisCtl.text);
+                            print("No. Lokomotif : " + noLokomotifCtl.text);
+                            print("Jumlah Rangkaian : " + jmlRangkaianCtl.text);
+                            print("Jumlah ASD : " + jmlAsdCtl.text);
 
-                      var data = {
-                        'masinis': masinisCtl.text,
-                        'asisten_masinis': astMasinisCtl.text,
-                        'no_lokomotif': noLokomotifCtl.text,
-                        'jumlah_rangkaian': jmlRangkaianCtl.text,
-                        'jumlah_asd': jmlAsdCtl.text,
-                      };
+                            // var data = {
+                            //   'masinis': masinisCtl.text,
+                            //   'asisten_masinis': astMasinisCtl.text,
+                            //   'no_lokomotif': noLokomotifCtl.text,
+                            //   'jumlah_rangkaian': jmlRangkaianCtl.text,
+                            //   'jumlah_asd': jmlAsdCtl.text,
+                            // };
 
-                      await sharedPref
-                          .writeData('masinis', masinisCtl.text)
-                          .then((value) async {
-                        await sharedPref
-                            .writeData('asisten_masinis', astMasinisCtl.text)
-                            .then((value) async {
-                          await sharedPref
-                              .writeData('no_lokomotif', noLokomotifCtl.text)
-                              .then((value) async {
                             await sharedPref
-                                .writeData(
-                                    'jumlah_rangkaian', jmlRangkaianCtl.text)
+                                .writeData('masinis', masinisCtl.text)
                                 .then((value) async {
                               await sharedPref
-                                  .writeData('jumlah_asd', jmlAsdCtl.text)
-                                  .then((value) {
-                                Navigator.pushNamed(context, '/item-wiper');
+                                  .writeData(
+                                      'asisten_masinis', astMasinisCtl.text)
+                                  .then((value) async {
+                                await sharedPref
+                                    .writeData(
+                                        'no_lokomotif', noLokomotifCtl.text)
+                                    .then((value) async {
+                                  await sharedPref
+                                      .writeData('jumlah_rangkaian',
+                                          jmlRangkaianCtl.text)
+                                      .then((value) async {
+                                    await sharedPref
+                                        .writeData('jumlah_asd', jmlAsdCtl.text)
+                                        .then((value) {
+                                      Navigator.pushNamed(
+                                          context, '/item-wiper');
+                                    });
+                                  });
+                                });
                               });
                             });
-                          });
-                        });
-                      });
-                    },
-                  ),
-                ),
+                          },
+                        ),
+                      )
+                    : SizedBox(
+                        height: 0,
+                      ),
               ],
             ),
           ),
