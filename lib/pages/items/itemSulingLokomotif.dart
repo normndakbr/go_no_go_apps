@@ -46,7 +46,7 @@ class _ItemSulingLokomotifState extends State<ItemSulingLokomotif> {
               SizedBox(
                 height: height * 0.06,
               ),
-              Image.asset('assets/images/imgSulingLokomotif.png'),
+              Image.asset('assets/images/imgLokotrack.png'),
               SizedBox(
                 height: height * 0.02,
               ),

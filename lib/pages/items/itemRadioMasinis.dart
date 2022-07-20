@@ -46,7 +46,7 @@ class _ItemRadioMasinisState extends State<ItemRadioMasinis> {
               SizedBox(
                 height: height * 0.06,
               ),
-              Image.asset('assets/images/imgRadioMasinis.png'),
+              Image.asset('assets/images/imgLokotrack.png'),
               SizedBox(
                 height: height * 0.02,
               ),

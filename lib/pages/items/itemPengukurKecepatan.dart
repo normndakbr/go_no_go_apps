@@ -46,7 +46,7 @@ class _ItemPengukurKecepatanState extends State<ItemPengukurKecepatan> {
               SizedBox(
                 height: height * 0.06,
               ),
-              Image.asset('assets/images/imgPengukurKecepatan.png'),
+              Image.asset('assets/images/imgLokotrack.png'),
               SizedBox(
                 height: height * 0.02,
               ),

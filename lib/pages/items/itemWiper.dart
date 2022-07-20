@@ -46,7 +46,7 @@ class _ItemWiperState extends State<ItemWiper> {
               SizedBox(
                 height: height * 0.06,
               ),
-              Image.asset('assets/images/imgWiper.png'),
+              Image.asset('assets/images/imgLokotrack.png'),
               SizedBox(
                 height: height * 0.02,
               ),

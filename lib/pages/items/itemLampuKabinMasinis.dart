@@ -46,7 +46,7 @@ class _ItemLampuKabinMasinisState extends State<ItemLampuKabinMasinis> {
               SizedBox(
                 height: height * 0.06,
               ),
-              Image.asset('assets/images/imgLampuKabinMasinis.png'),
+              Image.asset('assets/images/imgLokotrack.png'),
               SizedBox(
                 height: height * 0.02,
               ),

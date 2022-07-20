@@ -138,7 +138,36 @@ class _LaporanMasinisPageState extends State<LaporanMasinisPage> {
                       print("Jumlah Rangkaian : " + jmlRangkaianCtl.text);
                       print("Jumlah ASD : " + jmlAsdCtl.text);
 
-                      Navigator.pushNamed(context, '/item-wiper');
+                      var data = {
+                        'masinis': masinisCtl.text,
+                        'asisten_masinis': astMasinisCtl.text,
+                        'no_lokomotif': noLokomotifCtl.text,
+                        'jumlah_rangkaian': jmlRangkaianCtl.text,
+                        'jumlah_asd': jmlAsdCtl.text,
+                      };
+
+                      await sharedPref
+                          .writeData('masinis', masinisCtl.text)
+                          .then((value) async {
+                        await sharedPref
+                            .writeData('asisten_masinis', astMasinisCtl.text)
+                            .then((value) async {
+                          await sharedPref
+                              .writeData('no_lokomotif', noLokomotifCtl.text)
+                              .then((value) async {
+                            await sharedPref
+                                .writeData(
+                                    'jumlah_rangkaian', jmlRangkaianCtl.text)
+                                .then((value) async {
+                              await sharedPref
+                                  .writeData('jumlah_asd', jmlAsdCtl.text)
+                                  .then((value) {
+                                Navigator.pushNamed(context, '/item-wiper');
+                              });
+                            });
+                          });
+                        });
+                      });
                     },
                   ),
                 ),

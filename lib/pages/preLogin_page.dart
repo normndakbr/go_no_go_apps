@@ -18,6 +18,7 @@ class _PreLoginPageState extends State<PreLoginPage> {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: Column(
           children: [

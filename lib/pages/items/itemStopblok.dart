@@ -39,6 +39,12 @@ class _ItemStopblokState extends State<ItemStopblok> {
       color: Colors.lightGreen,
     );
 
+    void saveData() async {
+      await sharedPref.readAllData().then((value) {
+        print(value);
+      });
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
@@ -63,7 +69,7 @@ class _ItemStopblokState extends State<ItemStopblok> {
               SizedBox(
                 height: height * 0.06,
               ),
-              Image.asset('assets/images/imgStopblok.png'),
+              Image.asset('assets/images/imgLokotrack.png'),
               SizedBox(
                 height: height * 0.02,
               ),
@@ -140,20 +146,20 @@ class _ItemStopblokState extends State<ItemStopblok> {
                           print("Keterangan : " + ketStopblokCtl.text);
                           await sharedPref
                               .writeData('statusStopblok', 'Berfungsi')
-                              .then((value) => {
-                                    CoolAlert.show(
-                                        context: context,
-                                        type: CoolAlertType.success,
-                                        text: "Laporan anda telah terkirim.",
-                                        confirmBtnText: 'Kembali',
-                                        confirmBtnColor: Color(0xFFFB8500),
-                                        onConfirmBtnTap: () {
-                                          Navigator.pop(context);
-                                          Navigator.of(context)
-                                              .pushReplacementNamed(
-                                                  '/preLogin');
-                                        })
-                                  });
+                              .then((value) {
+                            saveData();
+                            CoolAlert.show(
+                                context: context,
+                                type: CoolAlertType.success,
+                                text: "Laporan anda telah terkirim.",
+                                confirmBtnText: 'Kembali',
+                                confirmBtnColor: Color(0xFFFB8500),
+                                onConfirmBtnTap: () {
+                                  Navigator.pop(context);
+                                  Navigator.of(context)
+                                      .pushReplacementNamed('/preLogin');
+                                });
+                          });
                         } else {
                           print("Stopblok Tidak Berfungsi");
                           print("Keterangan : " + ketStopblokCtl.text);

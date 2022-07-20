@@ -46,7 +46,7 @@ class _ItemAparState extends State<ItemApar> {
               SizedBox(
                 height: height * 0.06,
               ),
-              Image.asset('assets/images/imgApar.png'),
+              Image.asset('assets/images/imgLokotrack.png'),
               SizedBox(
                 height: height * 0.02,
               ),
