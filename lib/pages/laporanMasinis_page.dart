@@ -40,107 +40,110 @@ class _LaporanMasinisPageState extends State<LaporanMasinisPage> {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Padding(
-        padding: EdgeInsets.all(height * 0.05),
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: height * 0.06,
-              ),
-              Text(
-                'Laporan Masinis',
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontSize: height * 0.048,
-                  fontWeight: FontWeight.w600,
+      resizeToAvoidBottomInset: true,
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Padding(
+          padding: EdgeInsets.all(height * 0.05),
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: height * 0.06,
                 ),
-              ),
-              SizedBox(
-                height: height * 0.06,
-              ),
-              TextFormField(
-                controller: masinisCtl,
-                decoration: InputDecoration(
-                  labelText: "Nama Masinis",
-                  labelStyle: TextStyle(
-                    color: Color(0XFF1C2F3D),
-                    fontSize: height * 0.03,
+                Text(
+                  'Laporan Masinis',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontSize: height * 0.048,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-              ),
-              SizedBox(
-                height: height * 0.015,
-              ),
-              TextFormField(
-                controller: astMasinisCtl,
-                decoration: InputDecoration(
-                  labelText: "Nama Asisten Masinis",
-                  labelStyle: TextStyle(
-                    color: Color(0XFF1C2F3D),
-                    fontSize: height * 0.03,
+                SizedBox(
+                  height: height * 0.06,
+                ),
+                TextFormField(
+                  controller: masinisCtl,
+                  decoration: InputDecoration(
+                    labelText: "Nama Masinis",
+                    labelStyle: TextStyle(
+                      color: Color(0XFF1C2F3D),
+                      fontSize: height * 0.03,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: height * 0.015,
-              ),
-              TextFormField(
-                controller: noLokomotifCtl,
-                decoration: InputDecoration(
-                  labelText: "Nomor Lokomotif",
-                  labelStyle: TextStyle(
-                    color: Color(0XFF1C2F3D),
-                    fontSize: height * 0.03,
+                SizedBox(
+                  height: height * 0.015,
+                ),
+                TextFormField(
+                  controller: astMasinisCtl,
+                  decoration: InputDecoration(
+                    labelText: "Nama Asisten Masinis",
+                    labelStyle: TextStyle(
+                      color: Color(0XFF1C2F3D),
+                      fontSize: height * 0.03,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: height * 0.015,
-              ),
-              TextFormField(
-                controller: jmlRangkaianCtl,
-                decoration: InputDecoration(
-                  labelText: "Jumlah Rangkaian",
-                  labelStyle: TextStyle(
-                    color: Color(0XFF1C2F3D),
-                    fontSize: height * 0.03,
+                SizedBox(
+                  height: height * 0.015,
+                ),
+                TextFormField(
+                  controller: noLokomotifCtl,
+                  decoration: InputDecoration(
+                    labelText: "Nomor Lokomotif",
+                    labelStyle: TextStyle(
+                      color: Color(0XFF1C2F3D),
+                      fontSize: height * 0.03,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: height * 0.015,
-              ),
-              TextFormField(
-                controller: jmlAsdCtl,
-                decoration: InputDecoration(
-                  labelText: "Jumlah ASD",
-                  labelStyle: TextStyle(
-                    color: Color(0XFF1C2F3D),
-                    fontSize: height * 0.03,
+                SizedBox(
+                  height: height * 0.015,
+                ),
+                TextFormField(
+                  controller: jmlRangkaianCtl,
+                  decoration: InputDecoration(
+                    labelText: "Jumlah Rangkaian",
+                    labelStyle: TextStyle(
+                      color: Color(0XFF1C2F3D),
+                      fontSize: height * 0.03,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: height * 0.06,
-              ),
-              Center(
-                child: GestureDetector(
-                  child: Image.asset('assets/images/btnNext.png'),
-                  onTap: () async {
-                    print("Masinis : " + masinisCtl.text);
-                    print("Asisten Masinis : " + astMasinisCtl.text);
-                    print("No. Lokomotif : " + noLokomotifCtl.text);
-                    print("Jumlah Rangkaian : " + jmlRangkaianCtl.text);
-                    print("Jumlah ASD : " + jmlAsdCtl.text);
+                SizedBox(
+                  height: height * 0.015,
+                ),
+                TextFormField(
+                  controller: jmlAsdCtl,
+                  decoration: InputDecoration(
+                    labelText: "Jumlah ASD",
+                    labelStyle: TextStyle(
+                      color: Color(0XFF1C2F3D),
+                      fontSize: height * 0.03,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: height * 0.06,
+                ),
+                Center(
+                  child: GestureDetector(
+                    child: Image.asset('assets/images/btnNext.png'),
+                    onTap: () async {
+                      print("Masinis : " + masinisCtl.text);
+                      print("Asisten Masinis : " + astMasinisCtl.text);
+                      print("No. Lokomotif : " + noLokomotifCtl.text);
+                      print("Jumlah Rangkaian : " + jmlRangkaianCtl.text);
+                      print("Jumlah ASD : " + jmlAsdCtl.text);
 
-                    Navigator.pushNamed(context, '/item-wiper');
-                  },
+                      Navigator.pushNamed(context, '/item-wiper');
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

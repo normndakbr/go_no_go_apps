@@ -40,7 +40,7 @@ class _ItemStopblokState extends State<ItemStopblok> {
     );
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Center(

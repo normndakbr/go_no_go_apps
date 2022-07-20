@@ -23,7 +23,7 @@ class _ItemLampuKabinMasinisState extends State<ItemLampuKabinMasinis> {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Center(
