@@ -115,6 +115,12 @@ class _LoginPageState extends State<LoginPage> {
                   onTap: () async {
                     print("Username : " + userCtl.text);
                     print("Password : " + pwdCtl.text);
+
+                    if (userType == 'Masinis') {
+                      Navigator.pushNamed(context, '/laporan-masinis');
+                    } else {
+                      print("Anda login sebagai DIPO");
+                    }
                   },
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_route/pages/laporanMasinis_page.dart';
 import 'package:test_route/pages/preLogin_page.dart';
 import 'pages/login_page.dart';
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/preLogin': (context) => PreLoginPage(),
         '/login': (context) => LoginPage(),
+        '/laporan-masinis': (context) => LaporanMasinis(),
         // laporanMasinis,
         // wiper,
         // lokotrack,
