@@ -121,14 +121,16 @@ class _ItemLampuSorotState extends State<ItemLampuSorot> {
                         if (statusLampuSorot == true) {
                           print("LampuSorot Berfungsi");
                           print("Keterangan : " + ketLampuSorotCtl.text);
+                          await sharedPref.writeData(
+                              'statusLampuSorot', 'Berfungsi');
                         } else {
                           print("LampuSorot Tidak Berfungsi");
                           print("Keterangan : " + ketLampuSorotCtl.text);
+                          await sharedPref.writeData(
+                              'statusLampuSorot', 'Tidak Berfungsi');
                         }
 
-                        await sharedPref.writeData(
-                            'statusLampuSorot', 'Berfungsi');
-                        // Navigator.pushNamed(context, '/preLogin');
+                        Navigator.pushNamed(context, '/item-stopblok');
                       },
                     )
                   : SizedBox(height: 0),

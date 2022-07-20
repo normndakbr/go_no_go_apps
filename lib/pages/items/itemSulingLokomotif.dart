@@ -121,14 +121,16 @@ class _ItemSulingLokomotifState extends State<ItemSulingLokomotif> {
                         if (statusSulingLokomotif == true) {
                           print("SulingLokomotif Berfungsi");
                           print("Keterangan : " + ketSulingLokomotifCtl.text);
+                          await sharedPref.writeData(
+                              'statusSulingLokomotif', 'Berfungsi');
                         } else {
                           print("SulingLokomotif Tidak Berfungsi");
                           print("Keterangan : " + ketSulingLokomotifCtl.text);
+                          await sharedPref.writeData(
+                              'statusSulingLokomotif', 'Tidak Berfungsi');
                         }
 
-                        await sharedPref.writeData(
-                            'statusSulingLokomotif', 'Berfungsi');
-                        // Navigator.pushNamed(context, '/preLogin');
+                        Navigator.pushNamed(context, '/item-deadman-device');
                       },
                     )
                   : SizedBox(height: 0),

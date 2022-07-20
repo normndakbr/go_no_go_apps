@@ -121,14 +121,17 @@ class _ItemRadioMasinisState extends State<ItemRadioMasinis> {
                         if (statusRadioMasinis == true) {
                           print("RadioMasinis Berfungsi");
                           print("Keterangan : " + ketRadioMasinisCtl.text);
+                          await sharedPref.writeData(
+                              'statusRadioMasinis', 'Berfungsi');
                         } else {
                           print("RadioMasinis Tidak Berfungsi");
                           print("Keterangan : " + ketRadioMasinisCtl.text);
+                          await sharedPref.writeData(
+                              'statusRadioMasinis', 'Tidak Berfungsi');
                         }
 
-                        await sharedPref.writeData(
-                            'statusRadioMasinis', 'Berfungsi');
-                        // Navigator.pushNamed(context, '/preLogin');
+                        Navigator.pushNamed(
+                            context, '/item-pengukur-kecepatan');
                       },
                     )
                   : SizedBox(height: 0),

@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         '/item-radio-masinis': (context) => ItemRadioMasinis(),
         '/item-pengukur-kecepatan': (context) => ItemPengukurKecepatan(),
         '/item-lampu-sorot': (context) => ItemLampuSorot(),
-        '/item-Stopblok': (context) => ItemStopblok(),
+        '/item-stopblok': (context) => ItemStopblok(),
       },
     );
   }
