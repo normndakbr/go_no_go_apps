@@ -1,8 +1,12 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:test_route/services/sharedPreferences.dart';
-import '../../widgets/buildButton.dart';
-import '../login_page.dart';
 import 'package:cool_alert/cool_alert.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+// import '';
 
 class ItemStopblok extends StatefulWidget {
   const ItemStopblok({Key? key}) : super(key: key);
@@ -19,29 +23,86 @@ class _ItemStopblokState extends State<ItemStopblok> {
   bool yesButton = false;
   bool noButton = false;
 
+  void getPDF() async {
+    final pdf = pw.Document();
+
+    // Buat Pages
+    pdf.addPage(
+      pw.Page(
+          pageFormat: PdfPageFormat.a4,
+          build: (pw.Context context) {
+            return pw.Center(
+              child: pw.Table(
+                children: [
+                  pw.TableRow(children: [
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text('Data', style: pw.TextStyle(fontSize: 6)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text('Status', style: pw.TextStyle(fontSize: 6)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text('Keterangan',
+                              style: pw.TextStyle(fontSize: 6)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                  ]),
+                  pw.TableRow(children: [
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text('Wiper', style: pw.TextStyle(fontSize: 6)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text('Berfungsi',
+                              style: pw.TextStyle(fontSize: 6)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                  ]),
+                ],
+              ),
+            ); // Center
+          }),
+    );
+
+    // Simpan
+    final bytes = await pdf.save();
+
+    // Buat file kosong di dalam direktori hp
+    final dir = await getApplicationDocumentsDirectory();
+    final file = File('${dir.path}/output.pdf');
+
+    // Replace file kosong tadi dengan file pdf kita
+    await file.writeAsBytes(bytes);
+
+    // Buka file PDF
+    await OpenFile.open(file.path);
+  }
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
 
-    final confirmAlert = BuildButton(
-      onTap: () {
-        CoolAlert.show(
-          context: context,
-          type: CoolAlertType.confirm,
-          text: 'Submit Laporan?',
-          confirmBtnText: 'Ya',
-          cancelBtnText: 'Tidak',
-          confirmBtnColor: Colors.green,
-        );
-      },
-      text: 'Submit',
-      color: Colors.lightGreen,
-    );
-
     void saveData() async {
       await sharedPref.readAllData().then((value) {
-        print(value.length);
+        print(value);
       });
     }
 
@@ -155,9 +216,10 @@ class _ItemStopblokState extends State<ItemStopblok> {
                                 confirmBtnText: 'Simpan',
                                 confirmBtnColor: Color(0xFFFB8500),
                                 onConfirmBtnTap: () {
-                                  Navigator.pop(context);
-                                  Navigator.of(context)
-                                      .pushReplacementNamed('/preLogin');
+                                  // Navigator.pop(context);
+                                  // Navigator.of(context)
+                                  //     .pushReplacementNamed('/preLogin');
+                                  getPDF();
                                 });
                           });
                         } else {
@@ -174,13 +236,13 @@ class _ItemStopblokState extends State<ItemStopblok> {
                                 confirmBtnText: 'Simpan',
                                 confirmBtnColor: Color(0xFFFB8500),
                                 onConfirmBtnTap: () {
-                                  Navigator.pop(context);
-                                  Navigator.of(context)
-                                      .pushReplacementNamed('/preLogin');
+                                  // Navigator.pop(context);
+                                  // Navigator.of(context)
+                                  //     .pushReplacementNamed('/preLogin');
+                                  getPDF();
                                 });
                           });
                         }
-
                         // Navigator.pushNamed(context, '/preLogin');
                       },
                     )
