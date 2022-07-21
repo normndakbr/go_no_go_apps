@@ -10,11 +10,12 @@ class SQLHelper {
         username TEXT,
         password TEXT,
         user_type TEXT,
+        createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
       )
       """);
     await database.execute("""CREATE TABLE laporan(
         laporan_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-        user_id INTEGER FOREIGN KEY NOT NULL,
+        user_id INTEGER NOT NULL,
         user_type TEXT,
         nama_masinis TEXT,
         asisten_masinis TEXT,
@@ -41,43 +42,10 @@ class SQLHelper {
         ketStopblok TEXT,
         ketLokotrack TEXT,
         ketLampuSorot TEXT,
+        createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
       )
       """);
   }
-
-  // static Future<void> createLaporanTables(sql.Database database) async {
-  //   await database.execute("""CREATE TABLE laporan(
-  //       laporan_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  //       user_id INTEGER FOREIGN KEY NOT NULL,
-  //       user_type TEXT,
-  //       nama_masinis TEXT,
-  //       asisten_masinis TEXT,
-  //       no_lokomotif TEXT,
-  //       jumlah_rangkaian INTEGER,
-  //       jumlah_asd INTEGER,
-  //       statusDeadmanDevice TEXT,
-  //       statusLampuKabinMasinis TEXT,
-  //       statusApar TEXT,
-  //       statusRadioMasinis TEXT,
-  //       statusSulingLokomotif TEXT,
-  //       statusWiper TEXT,
-  //       statusPengukurKecepatan TEXT,
-  //       statusStopblok TEXT,
-  //       statusLokotrack TEXT,
-  //       statusLampuSorot TEXT,
-  //       ketDeadmanDevice TEXT,
-  //       ketLampuKabinMasinis TEXT,
-  //       ketApar TEXT,
-  //       ketRadioMasinis TEXT,
-  //       ketSulingLokomotif TEXT,
-  //       ketWiper TEXT,
-  //       ketPengukurKecepatan TEXT,
-  //       ketStopblok TEXT,
-  //       ketLokotrack TEXT,
-  //       ketLampuSorot TEXT,
-  //     )
-  //     """);
-  // }
 
   static Future<sql.Database> db() async {
     return sql.openDatabase(
@@ -175,8 +143,12 @@ class SQLHelper {
     return id;
   }
 
-  static Future<List<Map<String, dynamic>>> getUser(int id) async {
+  static Future<List<Map<String, dynamic>>> getUser(
+      String username, String userType) async {
     final db = await SQLHelper.db();
-    return db.query('users', where: "user_id = ?", whereArgs: [id], limit: 1);
+    return db.query('users',
+        where: "username = ? AND user_type = ?",
+        whereArgs: [username, userType],
+        limit: 1);
   }
 }

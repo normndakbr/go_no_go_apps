@@ -41,7 +41,7 @@ class _ItemStopblokState extends State<ItemStopblok> {
 
     void saveData() async {
       await sharedPref.readAllData().then((value) {
-        print(value);
+        print(value.length);
       });
     }
 
@@ -151,8 +151,8 @@ class _ItemStopblokState extends State<ItemStopblok> {
                             CoolAlert.show(
                                 context: context,
                                 type: CoolAlertType.success,
-                                text: "Laporan anda telah terkirim.",
-                                confirmBtnText: 'Kembali',
+                                text: "Laporan anda telah berhasil dibuat.",
+                                confirmBtnText: 'Simpan',
                                 confirmBtnColor: Color(0xFFFB8500),
                                 onConfirmBtnTap: () {
                                   Navigator.pop(context);
@@ -163,8 +163,22 @@ class _ItemStopblokState extends State<ItemStopblok> {
                         } else {
                           print("Stopblok Tidak Berfungsi");
                           print("Keterangan : " + ketStopblokCtl.text);
-                          await sharedPref.writeData(
-                              'statusStopblok', 'Tidak Berfungsi');
+                          await sharedPref
+                              .writeData('statusStopblok', 'Tidak Berfungsi')
+                              .then((value) async {
+                            saveData();
+                            CoolAlert.show(
+                                context: context,
+                                type: CoolAlertType.success,
+                                text: "Laporan anda telah berhasil dibuat.",
+                                confirmBtnText: 'Simpan',
+                                confirmBtnColor: Color(0xFFFB8500),
+                                onConfirmBtnTap: () {
+                                  Navigator.pop(context);
+                                  Navigator.of(context)
+                                      .pushReplacementNamed('/preLogin');
+                                });
+                          });
                         }
 
                         // Navigator.pushNamed(context, '/preLogin');

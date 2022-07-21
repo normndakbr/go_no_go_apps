@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../services/sharedPreferences.dart';
 import 'preLogin_page.dart';
+import 'package:test_route/services/database_helper.dart';
+import 'package:cool_alert/cool_alert.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -63,7 +65,9 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   width: width * 0.9,
                   child: Text(
-                    'Silahkan masukkan username & password anda untuk melanjutkan',
+                    'Silahkan masukkan username & password ' +
+                        userType +
+                        ' anda untuk melanjutkan',
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       fontSize: height * 0.025,
@@ -77,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                 TextFormField(
                   controller: userCtl,
                   decoration: InputDecoration(
-                    labelText: "Username",
+                    labelText: "Username " + userType,
                     labelStyle: TextStyle(
                       color: Color(0XFF1C2F3D),
                       fontSize: 21,
@@ -116,18 +120,71 @@ class _LoginPageState extends State<LoginPage> {
                         child: GestureDetector(
                           child: Image.asset('assets/images/btnLogin.png'),
                           onTap: () async {
-                            print("Username : " + userCtl.text);
-                            print("Password : " + pwdCtl.text);
+                            // print("Username : " + userCtl.text);
+                            // print("Password : " + pwdCtl.text);
 
-                            if (userType == 'Masinis') {
-                              Navigator.pushNamed(context, '/laporan-masinis');
+                            // cek ke database tabel user dengan membawa parameter username dan userType
+                            final data =
+                                await SQLHelper.getUser(userCtl.text, userType);
+
+                            if (data.length == 0) {
+                              CoolAlert.show(
+                                  context: context,
+                                  type: CoolAlertType.error,
+                                  text: "Akun tidak ditemukan",
+                                  confirmBtnText: 'Coba lagi',
+                                  confirmBtnColor: const Color(0xFFFB8500),
+                                  onConfirmBtnTap: () {
+                                    Navigator.pop(context);
+                                  });
                             } else {
-                              Navigator.pushNamed(context, '/item-wiper');
+                              if (data[0]['username'] != userCtl.text) {
+                                CoolAlert.show(
+                                    context: context,
+                                    type: CoolAlertType.error,
+                                    text: "Username atau Password salah.",
+                                    confirmBtnText: 'Coba lagi',
+                                    confirmBtnColor: const Color(0xFFFB8500),
+                                    onConfirmBtnTap: () {
+                                      Navigator.pop(context);
+                                    });
+                              } else if (data[0]['username'] == userCtl.text &&
+                                  data[0]['password'] != pwdCtl.text) {
+                                CoolAlert.show(
+                                    context: context,
+                                    type: CoolAlertType.error,
+                                    text: "Username atau Password salah.",
+                                    confirmBtnText: 'Coba lagi',
+                                    confirmBtnColor: const Color(0xFFFB8500),
+                                    onConfirmBtnTap: () {
+                                      Navigator.pop(context);
+                                    });
+                              } else {
+                                CoolAlert.show(
+                                    context: context,
+                                    type: CoolAlertType.success,
+                                    text:
+                                        "Halo, selamat datang " + userCtl.text,
+                                    confirmBtnText: 'Buat Laporan',
+                                    confirmBtnColor: const Color(0xFFFB8500),
+                                    onConfirmBtnTap: () {
+                                      if (userType == 'Masinis') {
+                                        Navigator.pop(context);
+                                        Navigator.pushNamed(
+                                            context, '/laporan-masinis');
+                                      } else {
+                                        Navigator.pop(context);
+
+                                        Navigator.pushNamed(
+                                            context, '/item-wiper');
+                                      }
+                                    });
+                              }
                             }
                           },
                         ),
                       )
-                    : SizedBox(
+                    : const SizedBox(
                         width: 0,
                       ),
               ],

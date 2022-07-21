@@ -19,13 +19,13 @@ class _PreLoginPageState extends State<PreLoginPage> {
     _registerUser();
   }
 
-  Future<void> _registerUser() async {
-    await SQLHelper.createUser('masinis1', '12345', 'Masinis');
-    await SQLHelper.createUser('masinis2', '12345', 'Masinis');
-    await SQLHelper.createUser('masinis3', '12345', 'Masinis');
-    await SQLHelper.createUser('dipo1', '12345', 'Dipo');
-    await SQLHelper.createUser('dipo2', '12345', 'Dipo');
-    await SQLHelper.createUser('dipo3', '12345', 'Dipo');
+  void _registerUser() {
+    SQLHelper.createUser('masinis1', '12345', 'Masinis');
+    SQLHelper.createUser('masinis2', '12345', 'Masinis');
+    SQLHelper.createUser('masinis3', '12345', 'Masinis');
+    SQLHelper.createUser('dipo1', '12345', 'Dipo');
+    SQLHelper.createUser('dipo2', '12345', 'Dipo');
+    SQLHelper.createUser('dipo3', '12345', 'Dipo');
 
     print("Register done");
   }
