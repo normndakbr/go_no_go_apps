@@ -168,18 +168,20 @@ class _LoginPageState extends State<LoginPage> {
                                     confirmBtnText: 'Buat Laporan',
                                     confirmBtnColor: const Color(0xFFFB8500),
                                     onConfirmBtnTap: () async {
-                                      await sharedPref.writeData(
-                                          'username', userCtl.text);
-                                      if (userType == 'Masinis') {
-                                        Navigator.pop(context);
-                                        Navigator.pushNamed(
-                                            context, '/laporan-masinis');
-                                      } else {
-                                        Navigator.pop(context);
+                                      await sharedPref
+                                          .writeData('username', userCtl.text)
+                                          .then((value) {
+                                        if (userType == 'Masinis') {
+                                          Navigator.pop(context);
+                                          Navigator.pushNamed(
+                                              context, '/laporan-masinis');
+                                        } else {
+                                          Navigator.pop(context);
 
-                                        Navigator.pushNamed(
-                                            context, '/item-wiper');
-                                      }
+                                          Navigator.pushNamed(
+                                              context, '/item-wiper');
+                                        }
+                                      });
                                     });
                               }
                             }

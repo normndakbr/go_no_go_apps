@@ -48,27 +48,86 @@ class _ItemStopblokState extends State<ItemStopblok> {
                       ),
                     ),
                     pw.SizedBox(height: 20),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.start,
-                        children: [
-                          pw.Text(
-                            'Username : ' + newData['username'].toString(),
-                            textAlign: pw.TextAlign.left,
-                            style: pw.TextStyle(fontSize: 12),
-                          ),
-                          pw.SizedBox(height: 10),
-                          pw.Text(
-                            'Tipe Akun : ' + newData['userType'].toString(),
-                            textAlign: pw.TextAlign.left,
-                            style: pw.TextStyle(fontSize: 12),
-                          ),
-                          pw.SizedBox(height: 10),
-                          pw.Text(
-                            'Tanggal Laporan : ' + formattedDate,
-                            textAlign: pw.TextAlign.left,
-                            style: pw.TextStyle(fontSize: 12),
-                          ),
-                        ]),
+                    newData['userType'] == 'Masinis'
+                        ? pw.Column(
+                            crossAxisAlignment: pw.CrossAxisAlignment.start,
+                            children: [
+                                pw.Text(
+                                  'Username : ' +
+                                      newData['username'].toString(),
+                                  textAlign: pw.TextAlign.left,
+                                  style: pw.TextStyle(fontSize: 12),
+                                ),
+                                pw.SizedBox(height: 10),
+                                pw.Text(
+                                  'Tipe Akun : ' +
+                                      newData['userType'].toString(),
+                                  textAlign: pw.TextAlign.left,
+                                  style: pw.TextStyle(fontSize: 12),
+                                ),
+                                pw.SizedBox(height: 10),
+                                pw.Text(
+                                  'Tanggal Laporan : ' + formattedDate,
+                                  textAlign: pw.TextAlign.left,
+                                  style: pw.TextStyle(fontSize: 12),
+                                ),
+                                pw.SizedBox(height: 10),
+                                pw.Text(
+                                  'Masinis : ' + newData['masinis'],
+                                  textAlign: pw.TextAlign.left,
+                                  style: pw.TextStyle(fontSize: 12),
+                                ),
+                                pw.SizedBox(height: 10),
+                                pw.Text(
+                                  'Asisten Masinis : ' +
+                                      newData['asisten_masinis'],
+                                  textAlign: pw.TextAlign.left,
+                                  style: pw.TextStyle(fontSize: 12),
+                                ),
+                                pw.SizedBox(height: 10),
+                                pw.Text(
+                                  'Nomor Lokomotif : ' +
+                                      newData['no_lokomotif'],
+                                  textAlign: pw.TextAlign.left,
+                                  style: pw.TextStyle(fontSize: 12),
+                                ),
+                                pw.SizedBox(height: 10),
+                                pw.Text(
+                                  'Jumlah Rangkaian : ' +
+                                      newData['jumlah_rangkaian'],
+                                  textAlign: pw.TextAlign.left,
+                                  style: pw.TextStyle(fontSize: 12),
+                                ),
+                                pw.SizedBox(height: 10),
+                                pw.Text(
+                                  'Jumlah ASD : ' + newData['jumlah_asd'],
+                                  textAlign: pw.TextAlign.left,
+                                  style: pw.TextStyle(fontSize: 12),
+                                ),
+                              ])
+                        : pw.Column(
+                            crossAxisAlignment: pw.CrossAxisAlignment.start,
+                            children: [
+                                pw.Text(
+                                  'Username : ' +
+                                      newData['username'].toString(),
+                                  textAlign: pw.TextAlign.left,
+                                  style: pw.TextStyle(fontSize: 12),
+                                ),
+                                pw.SizedBox(height: 10),
+                                pw.Text(
+                                  'Tipe Akun : ' +
+                                      newData['userType'].toString(),
+                                  textAlign: pw.TextAlign.left,
+                                  style: pw.TextStyle(fontSize: 12),
+                                ),
+                                pw.SizedBox(height: 10),
+                                pw.Text(
+                                  'Tanggal Laporan : ' + formattedDate,
+                                  textAlign: pw.TextAlign.left,
+                                  style: pw.TextStyle(fontSize: 12),
+                                ),
+                              ]),
                     pw.SizedBox(height: 30),
                     pw.Center(
                       child: pw.Table(
@@ -424,7 +483,8 @@ class _ItemStopblokState extends State<ItemStopblok> {
 
     // Buat file kosong di dalam direktori hp
     final dir = await getApplicationDocumentsDirectory();
-    final file = File('${dir.path}/output.pdf');
+    final file =
+        File('${dir.path}/laporan_${newData['userType']}_${formattedDate}.pdf');
 
     // Replace file kosong tadi dengan file pdf kita
     await file.writeAsBytes(bytes);
@@ -438,6 +498,7 @@ class _ItemStopblokState extends State<ItemStopblok> {
       if (value['userType'] == 'Masinis') {
         setState(() {
           newData = {
+            'username': value['username'],
             'userType': value['userType'],
             'masinis': value['masinis'],
             'asisten_masinis': value['asisten_masinis'],
@@ -469,6 +530,7 @@ class _ItemStopblokState extends State<ItemStopblok> {
       } else if (value['userType'] == 'Dipo') {
         setState(() {
           newData = {
+            'username': value['usename'],
             'userType': value['userType'],
             'statusWiper': value['statusWiper'],
             'ketWiper': value['ketWiper'],
@@ -616,9 +678,9 @@ class _ItemStopblokState extends State<ItemStopblok> {
                                 confirmBtnColor: Color(0xFFFB8500),
                                 onConfirmBtnTap: () {
                                   getPDF();
-                                  // Navigator.pop(context);
-                                  // Navigator.of(context)
-                                  //     .pushReplacementNamed('/preLogin');
+                                  Navigator.pop(context);
+                                  Navigator.of(context)
+                                      .pushReplacementNamed('/preLogin');
                                 });
                           });
                         } else {
@@ -634,9 +696,9 @@ class _ItemStopblokState extends State<ItemStopblok> {
                                 confirmBtnColor: Color(0xFFFB8500),
                                 onConfirmBtnTap: () {
                                   getPDF();
-                                  // Navigator.pop(context);
-                                  // Navigator.of(context)
-                                  //     .pushReplacementNamed('/preLogin');
+                                  Navigator.pop(context);
+                                  Navigator.of(context)
+                                      .pushReplacementNamed('/preLogin');
                                 });
                           });
                         }
