@@ -22,6 +22,7 @@ class _ItemStopblokState extends State<ItemStopblok> {
   bool statusStopblok = false;
   bool yesButton = false;
   bool noButton = false;
+  var newData;
 
   void getPDF() async {
     final pdf = pw.Document();
@@ -39,22 +40,50 @@ class _ItemStopblokState extends State<ItemStopblok> {
                         crossAxisAlignment: pw.CrossAxisAlignment.center,
                         mainAxisAlignment: pw.MainAxisAlignment.center,
                         children: [
-                          pw.Text('Data', style: pw.TextStyle(fontSize: 6)),
-                          pw.Divider(thickness: 1)
+                          pw.Text('Data', style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 2.5)
                         ]),
                     pw.Column(
                         crossAxisAlignment: pw.CrossAxisAlignment.center,
                         mainAxisAlignment: pw.MainAxisAlignment.center,
                         children: [
-                          pw.Text('Status', style: pw.TextStyle(fontSize: 6)),
-                          pw.Divider(thickness: 1)
+                          pw.Text('Status',
+                              style: pw.TextStyle(
+                                fontSize: 12,
+                              )),
+                          pw.Divider(thickness: 2.5)
                         ]),
                     pw.Column(
                         crossAxisAlignment: pw.CrossAxisAlignment.center,
                         mainAxisAlignment: pw.MainAxisAlignment.center,
                         children: [
                           pw.Text('Keterangan',
-                              style: pw.TextStyle(fontSize: 6)),
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 2.5)
+                        ]),
+                  ]),
+                  pw.TableRow(children: [
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text('Wiper', style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text(newData['statusWiper'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text(newData['ketWiper'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
                           pw.Divider(thickness: 1)
                         ]),
                   ]),
@@ -63,15 +92,231 @@ class _ItemStopblokState extends State<ItemStopblok> {
                         crossAxisAlignment: pw.CrossAxisAlignment.center,
                         mainAxisAlignment: pw.MainAxisAlignment.center,
                         children: [
-                          pw.Text('Wiper', style: pw.TextStyle(fontSize: 6)),
+                          pw.Text('Lokotrack',
+                              style: pw.TextStyle(fontSize: 12)),
                           pw.Divider(thickness: 1)
                         ]),
                     pw.Column(
                         crossAxisAlignment: pw.CrossAxisAlignment.center,
                         mainAxisAlignment: pw.MainAxisAlignment.center,
                         children: [
-                          pw.Text('Berfungsi',
-                              style: pw.TextStyle(fontSize: 6)),
+                          pw.Text(newData['statusLokotrack'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text(newData['ketLokotrack'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                  ]),
+                  pw.TableRow(children: [
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text('Apar', style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text(newData['statusApar'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text(newData['ketApar'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                  ]),
+                  pw.TableRow(children: [
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text('Lampu Kabin Masinis',
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text(newData['statusLampuKabinMasinis'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text(newData['ketLampuKabinMasinis'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                  ]),
+                  pw.TableRow(children: [
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text('Suling Lokomotif',
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text(newData['statusSulingLokomotif'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text(newData['ketSulingLokomotif'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                  ]),
+                  pw.TableRow(children: [
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text('Suling Lokomotif',
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text(newData['statusSulingLokomotif'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text(newData['ketSulingLokomotif'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                  ]),
+                  pw.TableRow(children: [
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text('Deadman Device',
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text(newData['statusDeadmanDevice'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text(newData['ketDeadmanDevice'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                  ]),
+                  pw.TableRow(children: [
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text('Radio Masinis',
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text(newData['statusRadioMasinis'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text(newData['ketRadioMasinis'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                  ]),
+                  pw.TableRow(children: [
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text('Pengukur Kecepatan',
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text(newData['statusPengukurKecepatan'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text(newData['ketPengukurKecepatan'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                  ]),
+                  pw.TableRow(children: [
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text('Stopblok',
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text(newData['statusStopblok'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
+                          pw.Divider(thickness: 1)
+                        ]),
+                    pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.center,
+                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        children: [
+                          pw.Text(newData['ketStopblok'].toString(),
+                              style: pw.TextStyle(fontSize: 12)),
                           pw.Divider(thickness: 1)
                         ]),
                   ]),
@@ -95,16 +340,71 @@ class _ItemStopblokState extends State<ItemStopblok> {
     await OpenFile.open(file.path);
   }
 
+  void getAllData() async {
+    await sharedPref.readAllData().then((value) {
+      if (value['userType'] == 'Masinis') {
+        setState(() {
+          newData = {
+            'masinis': value['masinis'],
+            'asisten_masinis': value['asisten_masinis'],
+            'no_lokomotif': value['no_lokomotif'],
+            'jumlah_rangkaian': value['jumlah_rangkaian'],
+            'jumlah_asd': value['jumlah_asd'],
+            'statusWiper': value['statusWiper'],
+            'ketWiper': value['ketWiper'],
+            'statusLokotrack': value['statusLokotrack'],
+            'ketLokotrack': value['ketLokotrack'],
+            'statusApar': value['statusApar'],
+            'ketApar': value['ketApar'],
+            'statusLampuKabinMasinis': value['statusLampuKabinMasinis'],
+            'ketLampuKabinMasinis': value['ketLampuKabinMasinis'],
+            'statusSulingLokomotif': value['statusSulingLokomotif'],
+            'ketSulingLokomotif': value['ketSulingLokomotif'],
+            'statusDeadmanDevice': value['statusDeadmanDevice'],
+            'ketDeadmanDevice': value['ketDeadmanDevice'],
+            'statusRadioMasinis': value['statusRadioMasinis'],
+            'ketRadioMasinis': value['ketRadioMasinis'],
+            'statusPengukurKecepatan': value['statusPengukurKecepatan'],
+            'ketPengukurKecepatan': value['ketPengukurKecepatan'],
+            'statusLampuSorot': value['statusLampuSorot'],
+            'ketLampuSorot': value['ketLampuSorot'],
+            'statusStopblok': value['statusStopblok'],
+            'ketStopblok': value['ketStopblok']
+          };
+        });
+      } else if (value['userType'] == 'Dipo') {
+        setState(() {
+          newData = {
+            'statusWiper': value['statusWiper'],
+            'ketWiper': value['ketWiper'],
+            'statusLokotrack': value['statusLokotrack'],
+            'ketLokotrack': value['ketLokotrack'],
+            'statusApar': value['statusApar'],
+            'ketApar': value['ketApar'],
+            'statusLampuKabinMasinis': value['statusLampuKabinMasinis'],
+            'ketLampuKabinMasinis': value['ketLampuKabinMasinis'],
+            'statusSulingLokomotif': value['statusSulingLokomotif'],
+            'ketSulingLokomotif': value['ketSulingLokomotif'],
+            'statusDeadmanDevice': value['statusDeadmanDevice'],
+            'ketDeadmanDevice': value['ketDeadmanDevice'],
+            'statusRadioMasinis': value['statusRadioMasinis'],
+            'ketRadioMasinis': value['ketRadioMasinis'],
+            'statusPengukurKecepatan': value['statusPengukurKecepatan'],
+            'ketPengukurKecepatan': value['ketPengukurKecepatan'],
+            'statusLampuSorot': value['statusLampuSorot'],
+            'ketLampuSorot': value['ketLampuSorot'],
+            'statusStopblok': value['statusStopblok'],
+            'ketStopblok': value['ketStopblok']
+          };
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-
-    void saveData() async {
-      await sharedPref.readAllData().then((value) {
-        print(value);
-      });
-    }
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -202,13 +502,17 @@ class _ItemStopblokState extends State<ItemStopblok> {
                   ? GestureDetector(
                       child: Image.asset('assets/images/btnNext.png'),
                       onTap: () async {
+                        await sharedPref.writeData(
+                            'ketStopblok',
+                            ketStopblokCtl.text == ''
+                                ? '-'
+                                : ketStopblokCtl.text);
+
                         if (statusStopblok == true) {
-                          print("Stopblok Berfungsi");
-                          print("Keterangan : " + ketStopblokCtl.text);
                           await sharedPref
                               .writeData('statusStopblok', 'Berfungsi')
                               .then((value) {
-                            saveData();
+                            getAllData();
                             CoolAlert.show(
                                 context: context,
                                 type: CoolAlertType.success,
@@ -216,19 +520,17 @@ class _ItemStopblokState extends State<ItemStopblok> {
                                 confirmBtnText: 'Simpan',
                                 confirmBtnColor: Color(0xFFFB8500),
                                 onConfirmBtnTap: () {
+                                  getPDF();
                                   // Navigator.pop(context);
                                   // Navigator.of(context)
                                   //     .pushReplacementNamed('/preLogin');
-                                  getPDF();
                                 });
                           });
                         } else {
-                          print("Stopblok Tidak Berfungsi");
-                          print("Keterangan : " + ketStopblokCtl.text);
                           await sharedPref
                               .writeData('statusStopblok', 'Tidak Berfungsi')
                               .then((value) async {
-                            saveData();
+                            getAllData();
                             CoolAlert.show(
                                 context: context,
                                 type: CoolAlertType.success,
@@ -236,10 +538,10 @@ class _ItemStopblokState extends State<ItemStopblok> {
                                 confirmBtnText: 'Simpan',
                                 confirmBtnColor: Color(0xFFFB8500),
                                 onConfirmBtnTap: () {
+                                  getPDF();
                                   // Navigator.pop(context);
                                   // Navigator.of(context)
                                   //     .pushReplacementNamed('/preLogin');
-                                  getPDF();
                                 });
                           });
                         }

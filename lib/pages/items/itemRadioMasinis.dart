@@ -119,16 +119,18 @@ class _ItemRadioMasinisState extends State<ItemRadioMasinis> {
                       child: Image.asset('assets/images/btnNext.png'),
                       onTap: () async {
                         if (statusRadioMasinis == true) {
-                          print("RadioMasinis Berfungsi");
-                          print("Keterangan : " + ketRadioMasinisCtl.text);
                           await sharedPref.writeData(
                               'statusRadioMasinis', 'Berfungsi');
                         } else {
-                          print("RadioMasinis Tidak Berfungsi");
-                          print("Keterangan : " + ketRadioMasinisCtl.text);
                           await sharedPref.writeData(
                               'statusRadioMasinis', 'Tidak Berfungsi');
                         }
+
+                        await sharedPref.writeData(
+                            'ketRadioMasinis',
+                            ketRadioMasinisCtl.text == ''
+                                ? '-'
+                                : ketRadioMasinisCtl.text);
 
                         Navigator.pushNamed(
                             context, '/item-pengukur-kecepatan');

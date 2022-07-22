@@ -119,16 +119,18 @@ class _ItemLampuSorotState extends State<ItemLampuSorot> {
                       child: Image.asset('assets/images/btnNext.png'),
                       onTap: () async {
                         if (statusLampuSorot == true) {
-                          print("LampuSorot Berfungsi");
-                          print("Keterangan : " + ketLampuSorotCtl.text);
                           await sharedPref.writeData(
                               'statusLampuSorot', 'Berfungsi');
                         } else {
-                          print("LampuSorot Tidak Berfungsi");
-                          print("Keterangan : " + ketLampuSorotCtl.text);
                           await sharedPref.writeData(
                               'statusLampuSorot', 'Tidak Berfungsi');
                         }
+
+                        await sharedPref.writeData(
+                            'ketLampuSorot',
+                            ketLampuSorotCtl.text == ''
+                                ? '-'
+                                : ketLampuSorotCtl.text);
 
                         Navigator.pushNamed(context, '/item-stopblok');
                       },

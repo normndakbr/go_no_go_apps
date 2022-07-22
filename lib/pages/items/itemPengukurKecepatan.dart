@@ -119,16 +119,18 @@ class _ItemPengukurKecepatanState extends State<ItemPengukurKecepatan> {
                       child: Image.asset('assets/images/btnNext.png'),
                       onTap: () async {
                         if (statusPengukurKecepatan == true) {
-                          print("PengukurKecepatan Berfungsi");
-                          print("Keterangan : " + ketPengukurKecepatanCtl.text);
                           await sharedPref.writeData(
                               'statusPengukurKecepatan', 'Berfungsi');
                         } else {
-                          print("PengukurKecepatan Tidak Berfungsi");
-                          print("Keterangan : " + ketPengukurKecepatanCtl.text);
                           await sharedPref.writeData(
                               'statusPengukurKecepatan', 'Tidak Berfungsi');
                         }
+
+                        await sharedPref.writeData(
+                            'ketPengukurKecepatan',
+                            ketPengukurKecepatanCtl.text == ''
+                                ? '-'
+                                : ketPengukurKecepatanCtl.text);
 
                         Navigator.pushNamed(context, '/item-lampu-sorot');
                       },

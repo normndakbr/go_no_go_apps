@@ -119,15 +119,14 @@ class _ItemAparState extends State<ItemApar> {
                       child: Image.asset('assets/images/btnNext.png'),
                       onTap: () async {
                         if (statusApar == true) {
-                          print("Apar Berfungsi");
-                          print("Keterangan : " + ketAparCtl.text);
                           await sharedPref.writeData('statusApar', 'Berfungsi');
                         } else {
-                          print("Apar Tidak Berfungsi");
-                          print("Keterangan : " + ketAparCtl.text);
                           await sharedPref.writeData(
                               'statusApar', 'Tidak Berfungsi');
                         }
+
+                        await sharedPref.writeData('ketApar',
+                            ketAparCtl.text == '' ? '-' : ketAparCtl.text);
 
                         Navigator.pushNamed(
                             context, '/item-lampu-kabin-masinis');

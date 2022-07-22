@@ -119,16 +119,18 @@ class _ItemLampuKabinMasinisState extends State<ItemLampuKabinMasinis> {
                       child: Image.asset('assets/images/btnNext.png'),
                       onTap: () async {
                         if (statusLampuKabinMasinis == true) {
-                          print("LampuKabinMasinis Berfungsi");
-                          print("Keterangan : " + ketLampuKabinMasinisCtl.text);
                           await sharedPref.writeData(
                               'statusLampuKabinMasinis', 'Berfungsi');
                         } else {
-                          print("LampuKabinMasinis Tidak Berfungsi");
-                          print("Keterangan : " + ketLampuKabinMasinisCtl.text);
                           await sharedPref.writeData(
                               'statusLampuKabinMasinis', 'Tidak Berfungsi');
                         }
+
+                        await sharedPref.writeData(
+                            'ketLampuKabinMasinis',
+                            ketLampuKabinMasinisCtl.text == ''
+                                ? '-'
+                                : ketLampuKabinMasinisCtl.text);
 
                         Navigator.pushNamed(context, '/item-suling-lokomotif');
                       },

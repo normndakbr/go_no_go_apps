@@ -73,7 +73,7 @@ class SQLHelper {
         .then((value) {
       print("User " + username + " berhasil di registrasi");
     });
-    return id;
+    return 1;
   }
 
   // Tambah laporan baru

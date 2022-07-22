@@ -130,6 +130,9 @@ class _ItemWiperState extends State<ItemWiper> {
                               'statusWiper', 'Tidak Berfungsi');
                         }
 
+                        await sharedPref.writeData('ketWiper',
+                            ketWiperCtl.text == '' ? '-' : ketWiperCtl.text);
+
                         Navigator.pushNamed(context, '/item-lokotrack');
                       },
                     )

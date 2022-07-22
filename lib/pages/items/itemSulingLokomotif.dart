@@ -130,6 +130,12 @@ class _ItemSulingLokomotifState extends State<ItemSulingLokomotif> {
                               'statusSulingLokomotif', 'Tidak Berfungsi');
                         }
 
+                        await sharedPref.writeData(
+                            'ketSulingLokomotif',
+                            ketSulingLokomotifCtl.text == ''
+                                ? '-'
+                                : ketSulingLokomotifCtl.text);
+
                         Navigator.pushNamed(context, '/item-deadman-device');
                       },
                     )

@@ -119,16 +119,18 @@ class _ItemDeadmanDeviceState extends State<ItemDeadmanDevice> {
                       child: Image.asset('assets/images/btnNext.png'),
                       onTap: () async {
                         if (statusDeadmanDevice == true) {
-                          print("DeadmanDevice Berfungsi");
-                          print("Keterangan : " + ketDeadmanDeviceCtl.text);
                           await sharedPref.writeData(
                               'statusDeadmanDevice', 'Berfungsi');
                         } else {
-                          print("DeadmanDevice Tidak Berfungsi");
-                          print("Keterangan : " + ketDeadmanDeviceCtl.text);
                           await sharedPref.writeData(
                               'statusDeadmanDevice', 'Tidak Berfungsi');
                         }
+
+                        await sharedPref.writeData(
+                            'ketDeadmanDevice',
+                            ketDeadmanDeviceCtl.text == ''
+                                ? '-'
+                                : ketDeadmanDeviceCtl.text);
 
                         Navigator.pushNamed(context, '/item-radio-masinis');
                       },
