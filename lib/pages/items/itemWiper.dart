@@ -23,7 +23,7 @@ class _ItemWiperState extends State<ItemWiper> {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Center(
@@ -46,7 +46,7 @@ class _ItemWiperState extends State<ItemWiper> {
               SizedBox(
                 height: height * 0.06,
               ),
-              Image.asset('assets/images/imgWiper.png'),
+              Image.asset('assets/images/imgLokotrack.png'),
               SizedBox(
                 height: height * 0.02,
               ),
@@ -129,6 +129,9 @@ class _ItemWiperState extends State<ItemWiper> {
                           await sharedPref.writeData(
                               'statusWiper', 'Tidak Berfungsi');
                         }
+
+                        await sharedPref.writeData('ketWiper',
+                            ketWiperCtl.text == '' ? '-' : ketWiperCtl.text);
 
                         Navigator.pushNamed(context, '/item-lokotrack');
                       },

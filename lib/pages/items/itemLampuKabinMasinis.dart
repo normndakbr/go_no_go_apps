@@ -23,7 +23,7 @@ class _ItemLampuKabinMasinisState extends State<ItemLampuKabinMasinis> {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Center(
@@ -46,7 +46,7 @@ class _ItemLampuKabinMasinisState extends State<ItemLampuKabinMasinis> {
               SizedBox(
                 height: height * 0.06,
               ),
-              Image.asset('assets/images/imgLampuKabinMasinis.png'),
+              Image.asset('assets/images/imgLokotrack.png'),
               SizedBox(
                 height: height * 0.02,
               ),
@@ -119,16 +119,18 @@ class _ItemLampuKabinMasinisState extends State<ItemLampuKabinMasinis> {
                       child: Image.asset('assets/images/btnNext.png'),
                       onTap: () async {
                         if (statusLampuKabinMasinis == true) {
-                          print("LampuKabinMasinis Berfungsi");
-                          print("Keterangan : " + ketLampuKabinMasinisCtl.text);
                           await sharedPref.writeData(
                               'statusLampuKabinMasinis', 'Berfungsi');
                         } else {
-                          print("LampuKabinMasinis Tidak Berfungsi");
-                          print("Keterangan : " + ketLampuKabinMasinisCtl.text);
                           await sharedPref.writeData(
                               'statusLampuKabinMasinis', 'Tidak Berfungsi');
                         }
+
+                        await sharedPref.writeData(
+                            'ketLampuKabinMasinis',
+                            ketLampuKabinMasinisCtl.text == ''
+                                ? '-'
+                                : ketLampuKabinMasinisCtl.text);
 
                         Navigator.pushNamed(context, '/item-suling-lokomotif');
                       },

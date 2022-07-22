@@ -23,7 +23,7 @@ class _ItemSulingLokomotifState extends State<ItemSulingLokomotif> {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Center(
@@ -46,7 +46,7 @@ class _ItemSulingLokomotifState extends State<ItemSulingLokomotif> {
               SizedBox(
                 height: height * 0.06,
               ),
-              Image.asset('assets/images/imgSulingLokomotif.png'),
+              Image.asset('assets/images/imgLokotrack.png'),
               SizedBox(
                 height: height * 0.02,
               ),
@@ -129,6 +129,12 @@ class _ItemSulingLokomotifState extends State<ItemSulingLokomotif> {
                           await sharedPref.writeData(
                               'statusSulingLokomotif', 'Tidak Berfungsi');
                         }
+
+                        await sharedPref.writeData(
+                            'ketSulingLokomotif',
+                            ketSulingLokomotifCtl.text == ''
+                                ? '-'
+                                : ketSulingLokomotifCtl.text);
 
                         Navigator.pushNamed(context, '/item-deadman-device');
                       },

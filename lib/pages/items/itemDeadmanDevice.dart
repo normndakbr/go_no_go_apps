@@ -23,7 +23,7 @@ class _ItemDeadmanDeviceState extends State<ItemDeadmanDevice> {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Center(
@@ -46,7 +46,7 @@ class _ItemDeadmanDeviceState extends State<ItemDeadmanDevice> {
               SizedBox(
                 height: height * 0.06,
               ),
-              Image.asset('assets/images/imgDeadmanDevice.png'),
+              Image.asset('assets/images/imgLokotrack.png'),
               SizedBox(
                 height: height * 0.02,
               ),
@@ -119,16 +119,18 @@ class _ItemDeadmanDeviceState extends State<ItemDeadmanDevice> {
                       child: Image.asset('assets/images/btnNext.png'),
                       onTap: () async {
                         if (statusDeadmanDevice == true) {
-                          print("DeadmanDevice Berfungsi");
-                          print("Keterangan : " + ketDeadmanDeviceCtl.text);
                           await sharedPref.writeData(
                               'statusDeadmanDevice', 'Berfungsi');
                         } else {
-                          print("DeadmanDevice Tidak Berfungsi");
-                          print("Keterangan : " + ketDeadmanDeviceCtl.text);
                           await sharedPref.writeData(
                               'statusDeadmanDevice', 'Tidak Berfungsi');
                         }
+
+                        await sharedPref.writeData(
+                            'ketDeadmanDevice',
+                            ketDeadmanDeviceCtl.text == ''
+                                ? '-'
+                                : ketDeadmanDeviceCtl.text);
 
                         Navigator.pushNamed(context, '/item-radio-masinis');
                       },

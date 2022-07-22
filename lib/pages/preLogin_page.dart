@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_route/services/database_helper.dart';
 import 'package:test_route/services/sharedPreferences.dart';
 import 'login_page.dart';
 
@@ -13,11 +14,29 @@ class _PreLoginPageState extends State<PreLoginPage> {
   SharedPreferenceService sharedPref = SharedPreferenceService();
 
   @override
+  void initState() {
+    super.initState();
+    _registerUser();
+  }
+
+  void _registerUser() {
+    SQLHelper.createUser('masinis1', '12345', 'Masinis');
+    SQLHelper.createUser('masinis2', '12345', 'Masinis');
+    SQLHelper.createUser('masinis3', '12345', 'Masinis');
+    SQLHelper.createUser('dipo1', '12345', 'Dipo');
+    SQLHelper.createUser('dipo2', '12345', 'Dipo');
+    SQLHelper.createUser('dipo3', '12345', 'Dipo');
+
+    print("Register done");
+  }
+
+  @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: Column(
           children: [

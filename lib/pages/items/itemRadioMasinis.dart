@@ -23,7 +23,7 @@ class _ItemRadioMasinisState extends State<ItemRadioMasinis> {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Center(
@@ -46,7 +46,7 @@ class _ItemRadioMasinisState extends State<ItemRadioMasinis> {
               SizedBox(
                 height: height * 0.06,
               ),
-              Image.asset('assets/images/imgRadioMasinis.png'),
+              Image.asset('assets/images/imgLokotrack.png'),
               SizedBox(
                 height: height * 0.02,
               ),
@@ -119,16 +119,18 @@ class _ItemRadioMasinisState extends State<ItemRadioMasinis> {
                       child: Image.asset('assets/images/btnNext.png'),
                       onTap: () async {
                         if (statusRadioMasinis == true) {
-                          print("RadioMasinis Berfungsi");
-                          print("Keterangan : " + ketRadioMasinisCtl.text);
                           await sharedPref.writeData(
                               'statusRadioMasinis', 'Berfungsi');
                         } else {
-                          print("RadioMasinis Tidak Berfungsi");
-                          print("Keterangan : " + ketRadioMasinisCtl.text);
                           await sharedPref.writeData(
                               'statusRadioMasinis', 'Tidak Berfungsi');
                         }
+
+                        await sharedPref.writeData(
+                            'ketRadioMasinis',
+                            ketRadioMasinisCtl.text == ''
+                                ? '-'
+                                : ketRadioMasinisCtl.text);
 
                         Navigator.pushNamed(
                             context, '/item-pengukur-kecepatan');

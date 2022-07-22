@@ -23,7 +23,7 @@ class _ItemLampuSorotState extends State<ItemLampuSorot> {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Center(
@@ -46,7 +46,7 @@ class _ItemLampuSorotState extends State<ItemLampuSorot> {
               SizedBox(
                 height: height * 0.06,
               ),
-              Image.asset('assets/images/imgLampuSorot.png'),
+              Image.asset('assets/images/imgLokotrack.png'),
               SizedBox(
                 height: height * 0.02,
               ),
@@ -119,16 +119,18 @@ class _ItemLampuSorotState extends State<ItemLampuSorot> {
                       child: Image.asset('assets/images/btnNext.png'),
                       onTap: () async {
                         if (statusLampuSorot == true) {
-                          print("LampuSorot Berfungsi");
-                          print("Keterangan : " + ketLampuSorotCtl.text);
                           await sharedPref.writeData(
                               'statusLampuSorot', 'Berfungsi');
                         } else {
-                          print("LampuSorot Tidak Berfungsi");
-                          print("Keterangan : " + ketLampuSorotCtl.text);
                           await sharedPref.writeData(
                               'statusLampuSorot', 'Tidak Berfungsi');
                         }
+
+                        await sharedPref.writeData(
+                            'ketLampuSorot',
+                            ketLampuSorotCtl.text == ''
+                                ? '-'
+                                : ketLampuSorotCtl.text);
 
                         Navigator.pushNamed(context, '/item-stopblok');
                       },

@@ -23,7 +23,7 @@ class _ItemPengukurKecepatanState extends State<ItemPengukurKecepatan> {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Center(
@@ -46,7 +46,7 @@ class _ItemPengukurKecepatanState extends State<ItemPengukurKecepatan> {
               SizedBox(
                 height: height * 0.06,
               ),
-              Image.asset('assets/images/imgPengukurKecepatan.png'),
+              Image.asset('assets/images/imgLokotrack.png'),
               SizedBox(
                 height: height * 0.02,
               ),
@@ -119,16 +119,18 @@ class _ItemPengukurKecepatanState extends State<ItemPengukurKecepatan> {
                       child: Image.asset('assets/images/btnNext.png'),
                       onTap: () async {
                         if (statusPengukurKecepatan == true) {
-                          print("PengukurKecepatan Berfungsi");
-                          print("Keterangan : " + ketPengukurKecepatanCtl.text);
                           await sharedPref.writeData(
                               'statusPengukurKecepatan', 'Berfungsi');
                         } else {
-                          print("PengukurKecepatan Tidak Berfungsi");
-                          print("Keterangan : " + ketPengukurKecepatanCtl.text);
                           await sharedPref.writeData(
                               'statusPengukurKecepatan', 'Tidak Berfungsi');
                         }
+
+                        await sharedPref.writeData(
+                            'ketPengukurKecepatan',
+                            ketPengukurKecepatanCtl.text == ''
+                                ? '-'
+                                : ketPengukurKecepatanCtl.text);
 
                         Navigator.pushNamed(context, '/item-lampu-sorot');
                       },
