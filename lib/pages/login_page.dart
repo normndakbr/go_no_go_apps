@@ -167,7 +167,9 @@ class _LoginPageState extends State<LoginPage> {
                                         "Halo, selamat datang " + userCtl.text,
                                     confirmBtnText: 'Buat Laporan',
                                     confirmBtnColor: const Color(0xFFFB8500),
-                                    onConfirmBtnTap: () {
+                                    onConfirmBtnTap: () async {
+                                      await sharedPref.writeData(
+                                          'username', userCtl.text);
                                       if (userType == 'Masinis') {
                                         Navigator.pop(context);
                                         Navigator.pushNamed(

@@ -6,7 +6,7 @@ import 'package:test_route/services/sharedPreferences.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-// import '';
+import 'package:intl/intl.dart';
 
 class ItemStopblok extends StatefulWidget {
   const ItemStopblok({Key? key}) : super(key: key);
@@ -23,305 +23,398 @@ class _ItemStopblokState extends State<ItemStopblok> {
   bool yesButton = false;
   bool noButton = false;
   var newData;
+  var now = DateTime.now();
+  var formatter = new DateFormat('yyyy-MM-dd');
 
   void getPDF() async {
     final pdf = pw.Document();
+    String formattedDate = formatter.format(now);
 
     // Buat Pages
     pdf.addPage(
       pw.Page(
           pageFormat: PdfPageFormat.a4,
           build: (pw.Context context) {
-            return pw.Center(
-              child: pw.Table(
-                children: [
-                  pw.TableRow(children: [
+            return pw.Container(
+              child: pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: [
+                    pw.SizedBox(height: 20),
+                    pw.Center(
+                      child: pw.Text(
+                        'Laporan Hasil Pemeriksaan',
+                        textAlign: pw.TextAlign.center,
+                        style: pw.TextStyle(fontSize: 20),
+                      ),
+                    ),
+                    pw.SizedBox(height: 20),
                     pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                        crossAxisAlignment: pw.CrossAxisAlignment.start,
                         children: [
-                          pw.Text('Data', style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 2.5)
+                          pw.Text(
+                            'Username : ' + newData['username'].toString(),
+                            textAlign: pw.TextAlign.left,
+                            style: pw.TextStyle(fontSize: 12),
+                          ),
+                          pw.SizedBox(height: 10),
+                          pw.Text(
+                            'Tipe Akun : ' + newData['userType'].toString(),
+                            textAlign: pw.TextAlign.left,
+                            style: pw.TextStyle(fontSize: 12),
+                          ),
+                          pw.SizedBox(height: 10),
+                          pw.Text(
+                            'Tanggal Laporan : ' + formattedDate,
+                            textAlign: pw.TextAlign.left,
+                            style: pw.TextStyle(fontSize: 12),
+                          ),
                         ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
+                    pw.SizedBox(height: 30),
+                    pw.Center(
+                      child: pw.Table(
                         children: [
-                          pw.Text('Status',
-                              style: pw.TextStyle(
-                                fontSize: 12,
-                              )),
-                          pw.Divider(thickness: 2.5)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text('Keterangan',
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 2.5)
-                        ]),
+                          pw.TableRow(children: [
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text('Data',
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 2.5)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text('Status',
+                                      style: pw.TextStyle(
+                                        fontSize: 12,
+                                      )),
+                                  pw.Divider(thickness: 2.5)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text('Keterangan',
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 2.5)
+                                ]),
+                          ]),
+                          pw.TableRow(children: [
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text('Wiper',
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(newData['statusWiper'].toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(newData['ketWiper'].toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                          ]),
+                          pw.TableRow(children: [
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text('Lokotrack',
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(newData['statusLokotrack'].toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(newData['ketLokotrack'].toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                          ]),
+                          pw.TableRow(children: [
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text('Apar',
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(newData['statusApar'].toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(newData['ketApar'].toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                          ]),
+                          pw.TableRow(children: [
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text('Lampu Kabin Masinis',
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(
+                                      newData['statusLampuKabinMasinis']
+                                          .toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(
+                                      newData['ketLampuKabinMasinis']
+                                          .toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                          ]),
+                          pw.TableRow(children: [
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text('Suling Lokomotif',
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(
+                                      newData['statusSulingLokomotif']
+                                          .toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(
+                                      newData['ketSulingLokomotif'].toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                          ]),
+                          pw.TableRow(children: [
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text('Suling Lokomotif',
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(
+                                      newData['statusSulingLokomotif']
+                                          .toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(
+                                      newData['ketSulingLokomotif'].toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                          ]),
+                          pw.TableRow(children: [
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text('Deadman Device',
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(
+                                      newData['statusDeadmanDevice'].toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(
+                                      newData['ketDeadmanDevice'].toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                          ]),
+                          pw.TableRow(children: [
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text('Radio Masinis',
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(
+                                      newData['statusRadioMasinis'].toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(newData['ketRadioMasinis'].toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                          ]),
+                          pw.TableRow(children: [
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text('Pengukur Kecepatan',
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(
+                                      newData['statusPengukurKecepatan']
+                                          .toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(
+                                      newData['ketPengukurKecepatan']
+                                          .toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                          ]),
+                          pw.TableRow(children: [
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text('Stopblok',
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(newData['statusStopblok'].toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(newData['ketStopblok'].toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                          ]),
+                        ],
+                      ),
+                    ),
                   ]),
-                  pw.TableRow(children: [
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text('Wiper', style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['statusWiper'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['ketWiper'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                  ]),
-                  pw.TableRow(children: [
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text('Lokotrack',
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['statusLokotrack'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['ketLokotrack'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                  ]),
-                  pw.TableRow(children: [
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text('Apar', style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['statusApar'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['ketApar'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                  ]),
-                  pw.TableRow(children: [
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text('Lampu Kabin Masinis',
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['statusLampuKabinMasinis'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['ketLampuKabinMasinis'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                  ]),
-                  pw.TableRow(children: [
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text('Suling Lokomotif',
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['statusSulingLokomotif'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['ketSulingLokomotif'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                  ]),
-                  pw.TableRow(children: [
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text('Suling Lokomotif',
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['statusSulingLokomotif'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['ketSulingLokomotif'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                  ]),
-                  pw.TableRow(children: [
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text('Deadman Device',
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['statusDeadmanDevice'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['ketDeadmanDevice'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                  ]),
-                  pw.TableRow(children: [
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text('Radio Masinis',
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['statusRadioMasinis'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['ketRadioMasinis'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                  ]),
-                  pw.TableRow(children: [
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text('Pengukur Kecepatan',
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['statusPengukurKecepatan'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['ketPengukurKecepatan'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                  ]),
-                  pw.TableRow(children: [
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text('Stopblok',
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['statusStopblok'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        mainAxisAlignment: pw.MainAxisAlignment.center,
-                        children: [
-                          pw.Text(newData['ketStopblok'].toString(),
-                              style: pw.TextStyle(fontSize: 12)),
-                          pw.Divider(thickness: 1)
-                        ]),
-                  ]),
-                ],
-              ),
             ); // Center
           }),
     );
@@ -345,6 +438,7 @@ class _ItemStopblokState extends State<ItemStopblok> {
       if (value['userType'] == 'Masinis') {
         setState(() {
           newData = {
+            'userType': value['userType'],
             'masinis': value['masinis'],
             'asisten_masinis': value['asisten_masinis'],
             'no_lokomotif': value['no_lokomotif'],
@@ -375,6 +469,7 @@ class _ItemStopblokState extends State<ItemStopblok> {
       } else if (value['userType'] == 'Dipo') {
         setState(() {
           newData = {
+            'userType': value['userType'],
             'statusWiper': value['statusWiper'],
             'ketWiper': value['ketWiper'],
             'statusLokotrack': value['statusLokotrack'],
