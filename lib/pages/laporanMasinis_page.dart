@@ -132,7 +132,7 @@ class _LaporanMasinisPageState extends State<LaporanMasinisPage> {
                 TextFormField(
                   controller: jmlAsdCtl,
                   decoration: InputDecoration(
-                    labelText: "Jumlah ASD",
+                    labelText: "Jumlah HSD",
                     labelStyle: TextStyle(
                       color: Color(0XFF1C2F3D),
                       fontSize: height * 0.03,
@@ -155,7 +155,7 @@ class _LaporanMasinisPageState extends State<LaporanMasinisPage> {
                             print("Asisten Masinis : " + astMasinisCtl.text);
                             print("No. Lokomotif : " + noLokomotifCtl.text);
                             print("Jumlah Rangkaian : " + jmlRangkaianCtl.text);
-                            print("Jumlah ASD : " + jmlAsdCtl.text);
+                            print("Jumlah HSD : " + jmlAsdCtl.text);
 
                             // var data = {
                             //   'masinis': masinisCtl.text,
