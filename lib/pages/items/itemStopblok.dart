@@ -100,7 +100,7 @@ class _ItemStopblokState extends State<ItemStopblok> {
                                 ),
                                 pw.SizedBox(height: 10),
                                 pw.Text(
-                                  'Jumlah ASD : ' + newData['jumlah_asd'],
+                                  'Jumlah HSD : ' + newData['jumlah_asd'],
                                   textAlign: pw.TextAlign.left,
                                   style: pw.TextStyle(fontSize: 12),
                                 ),
