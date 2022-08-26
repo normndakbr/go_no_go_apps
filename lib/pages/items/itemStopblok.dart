@@ -409,7 +409,7 @@ class _ItemStopblokState extends State<ItemStopblok> {
                                   pw.Divider(thickness: 1)
                                 ]),
                           ]),
-                                                    pw.TableRow(children: [
+                          pw.TableRow(children: [
                             pw.Column(
                                 crossAxisAlignment:
                                     pw.CrossAxisAlignment.center,
@@ -425,8 +425,27 @@ class _ItemStopblokState extends State<ItemStopblok> {
                                 mainAxisAlignment: pw.MainAxisAlignment.center,
                                 children: [
                                   pw.Text(
-                                      newData['statusLampuSorot']
-                                          .toString(),
+                                      newData['statusLampuSorot'].toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(newData['ketLampuSorot'].toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                          ]),
+                          pw.TableRow(children: [
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text('Ketinggian Cow Hanger',
                                       style: pw.TextStyle(fontSize: 12)),
                                   pw.Divider(thickness: 1)
                                 ]),
@@ -436,7 +455,16 @@ class _ItemStopblokState extends State<ItemStopblok> {
                                 mainAxisAlignment: pw.MainAxisAlignment.center,
                                 children: [
                                   pw.Text(
-                                      newData['ketLampuSorot'].toString(),
+                                      newData['statusKCowHanger'].toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(newData['ketKCowHanger'].toString(),
                                       style: pw.TextStyle(fontSize: 12)),
                                   pw.Divider(thickness: 1)
                                 ]),
@@ -523,6 +551,8 @@ class _ItemStopblokState extends State<ItemStopblok> {
             'ketPengukurKecepatan': value['ketPengukurKecepatan'],
             'statusLampuSorot': value['statusLampuSorot'],
             'ketLampuSorot': value['ketLampuSorot'],
+            'statusKCowHanger': value['statusKCowHanger'],
+            'ketKCowHanger': value['ketKCowHanger'],
             'statusStopblok': value['statusStopblok'],
             'ketStopblok': value['ketStopblok']
           };
@@ -550,6 +580,8 @@ class _ItemStopblokState extends State<ItemStopblok> {
             'ketPengukurKecepatan': value['ketPengukurKecepatan'],
             'statusLampuSorot': value['statusLampuSorot'],
             'ketLampuSorot': value['ketLampuSorot'],
+            'statusKCowHanger': value['statusKCowHanger'],
+            'ketKCowHanger': value['ketKCowHanger'],
             'statusStopblok': value['statusStopblok'],
             'ketStopblok': value['ketStopblok']
           };
