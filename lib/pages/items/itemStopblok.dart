@@ -321,38 +321,6 @@ class _ItemStopblokState extends State<ItemStopblok> {
                                     pw.CrossAxisAlignment.center,
                                 mainAxisAlignment: pw.MainAxisAlignment.center,
                                 children: [
-                                  pw.Text('Suling Lokomotif',
-                                      style: pw.TextStyle(fontSize: 12)),
-                                  pw.Divider(thickness: 1)
-                                ]),
-                            pw.Column(
-                                crossAxisAlignment:
-                                    pw.CrossAxisAlignment.center,
-                                mainAxisAlignment: pw.MainAxisAlignment.center,
-                                children: [
-                                  pw.Text(
-                                      newData['statusSulingLokomotif']
-                                          .toString(),
-                                      style: pw.TextStyle(fontSize: 12)),
-                                  pw.Divider(thickness: 1)
-                                ]),
-                            pw.Column(
-                                crossAxisAlignment:
-                                    pw.CrossAxisAlignment.center,
-                                mainAxisAlignment: pw.MainAxisAlignment.center,
-                                children: [
-                                  pw.Text(
-                                      newData['ketSulingLokomotif'].toString(),
-                                      style: pw.TextStyle(fontSize: 12)),
-                                  pw.Divider(thickness: 1)
-                                ]),
-                          ]),
-                          pw.TableRow(children: [
-                            pw.Column(
-                                crossAxisAlignment:
-                                    pw.CrossAxisAlignment.center,
-                                mainAxisAlignment: pw.MainAxisAlignment.center,
-                                children: [
                                   pw.Text('Deadman Device',
                                       style: pw.TextStyle(fontSize: 12)),
                                   pw.Divider(thickness: 1)
@@ -437,6 +405,38 @@ class _ItemStopblokState extends State<ItemStopblok> {
                                   pw.Text(
                                       newData['ketPengukurKecepatan']
                                           .toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                          ]),
+                                                    pw.TableRow(children: [
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text('Lampu Sorot',
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(
+                                      newData['statusLampuSorot']
+                                          .toString(),
+                                      style: pw.TextStyle(fontSize: 12)),
+                                  pw.Divider(thickness: 1)
+                                ]),
+                            pw.Column(
+                                crossAxisAlignment:
+                                    pw.CrossAxisAlignment.center,
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                children: [
+                                  pw.Text(
+                                      newData['ketLampuSorot'].toString(),
                                       style: pw.TextStyle(fontSize: 12)),
                                   pw.Divider(thickness: 1)
                                 ]),
