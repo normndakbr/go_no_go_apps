@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_route/pages/items/itemKetinggianCowHanger.dart';
 import 'package:test_route/pages/laporanMasinis_page.dart';
 import 'package:test_route/pages/preLogin_page.dart';
 import 'pages/items/itemApar.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         '/item-radio-masinis': (context) => ItemRadioMasinis(),
         '/item-pengukur-kecepatan': (context) => ItemPengukurKecepatan(),
         '/item-lampu-sorot': (context) => ItemLampuSorot(),
+        '/item-ket-cow-hanger': (context) => ItemKetinggianCowHanger(),
         '/item-stopblok': (context) => ItemStopblok(),
       },
     );
