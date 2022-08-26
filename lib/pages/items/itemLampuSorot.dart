@@ -132,7 +132,7 @@ class _ItemLampuSorotState extends State<ItemLampuSorot> {
                                 ? '-'
                                 : ketLampuSorotCtl.text);
 
-                        Navigator.pushNamed(context, '/item-stopblok');
+                        Navigator.pushNamed(context, '/item-ket-cow-hanger');
                       },
                     )
                   : SizedBox(height: 0),
